@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Merriweather&display=swap');
+
+* {
+    color: var(--font-primary-color);
+    font-family: 'Lato', sans-serif;
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -14,13 +22,9 @@ body{
     position: relative;
 }
 
-h2 {
-    color: var(--font-primary-color);
+h1 {
     margin: 0;
-}
-
-label {
-    color: var(--font-primary-color);
+    padding: 20px;
 }
 
 .links-login a{
@@ -28,11 +32,35 @@ label {
     text-decoration: none;
 }
 
+input {
+    margin: .8rem;
+    width: 15vw;
+    padding: 5px;
+    border-radius: 5px;
+    color: black;
+}
+
+.form-container {
+    width: 50%;
+    margin: auto;
+}
+
 #center-login-container {
     position: absolute;
     text-align: center;
-    top: 50%;
-    width: 100%;
+    top: 25%;
+    width: 50%;
     margin: auto;
+    font-size: larger;
     transform: translateY(-50%);
+    transform: translateX(50%);
+}
+
+button {
+    color: black;
+    padding: 5px;
+    font-size: medium;
+    width: 100px;
+    border-radius: 10px;
+    background-color: white;
 }
