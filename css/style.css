@@ -33,6 +33,16 @@ h1 {
     transform: translateY(55%);
 }
 
+#signup-container {
+    font-size: larger;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(10%);
+}
+
 label {
     margin: 10px;
 }
@@ -43,15 +53,31 @@ input {
     border-radius: 5px;
     padding: 5px;
     color: black;
+    text-align: center;
 }
 
 button {
     font-size: large;
-    color: black;
+    color: white;
     width: 25%;
     margin: 10px auto;
     border-radius: 5px;
     padding: 5px;
+    border: 2px solid white;
+    background-color: #000255;
+}
+
+select {
+    width: 40%;
+    margin: auto;
+    padding: 5px;
+    border-radius: 5px;
+    color: black;
+}
+
+select option {
+    color: black;
+    text-align: center;
 }
 
 p {
