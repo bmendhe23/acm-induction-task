@@ -43,6 +43,14 @@ h1 {
     transform: translateY(10%);
 }
 
+#signup-container input {
+    width: 50%;
+}
+
+#signup-container select {
+    width: 50%;
+}
+
 label {
     margin: 10px;
 }
