@@ -30,7 +30,7 @@ h1 {
     text-align: center;
     display: flex;
     flex-direction: column;
-    transform: translateY(60%);
+    transform: translateY(55%);
 }
 
 label {
