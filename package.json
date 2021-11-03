@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/bmendhe23/acm-induction-task#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "mongoose": "^6.0.12"
   }
 }
