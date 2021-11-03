@@ -1,0 +1,23 @@
+{
+  "name": "acm-induction-task",
+  "version": "1.0.0",
+  "description": "Sign up and login page making task done for ACM induction.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmendhe23/acm-induction-task.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bmendhe23/acm-induction-task/issues"
+  },
+  "homepage": "https://github.com/bmendhe23/acm-induction-task#readme",
+  "dependencies": {
+    "mongoose": "^6.0.12"
+  }
+}
