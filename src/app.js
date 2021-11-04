@@ -14,8 +14,14 @@ app.use(express.urlencoded({extended:false}));
 const port = process.env.PORT || 3000;
 
 const static_path = path.join(__dirname, "../public");
+console.log(static_path);
 
 app.use(express.static(static_path));
+
+app.get("/index", function(req, res) {
+    const index_path = path.join(__dirname, "../public/index.html");
+    res.sendFile(index_path);
+})
 
 //post request to create user
 app.post("/signup", async (req, res) => {
@@ -26,13 +32,10 @@ app.post("/signup", async (req, res) => {
 
         const token = await registerUser.generateAuthToken();
 
-        res.cookie("jwt", token, {
-            expires: new Date(Date.now() + 30000),
-            httpOnly: true
-        });
+        res.cookie("jwt", token);
 
         const registeredUser = await registerUser.save();
-        res.status(201).send("User Registered");
+        res.status(201).redirect("/index");
 
     } catch(err) {
         res.status(400).send(err);
@@ -62,7 +65,7 @@ app.post("/index", async (req, res) => {
         }
 
     } catch(err) {
-        res.status(400).send("Invalid Login Details");
+        res.status(400).send(err);
     }
 })
 
