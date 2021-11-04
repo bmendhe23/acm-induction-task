@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,42 +8,48 @@
     <title>Particle JS Effect</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <div id="container">
-        <div id="signup-container">
-            <h1>Sign Up</h1>
-            <label for="email">Email</label>
-            <input placeholder="Enter Email" type="text">
+        <form action="/signup" method="POST">
+            <div id="signup-container">
+                <h1>Sign Up</h1>
 
-            <label for="username">Username</label>
-            <input placeholder="Enter Username" type="text">
-            
-            <label for="name">Full Name</label>
-            <input placeholder="Enter Name" type="text">
+                <label for="email">Email</label>
+                <input placeholder="Enter Email" name="email" type="text">
 
-            <label for="password">Password</label>
-            <input placeholder="Enter Password" type="password">
+                <label for="username">Username</label>
+                <input placeholder="Enter Username" name="username" type="text">
 
-            <label for="password">Confirm Password</label>
-            <input placeholder="Re-enter Password" type="password">
-            
-            <label for="security-ques">Security Question</label>
-            <select name="question" id="security-ques">
-                <option value="birth">Which city were you born in?</option>
-                <option value="food">What is your favourite food?</option>
-                <option value="school">What is the name of your first school?</option>
-            </select>
+                <label for="name">Full Name</label>
+                <input placeholder="Enter Name" name="name" type="text">
 
-            <label for="security-ans">Security Answer</label>
-            <input placeholder="Enter Security Answer" type="text"><br>
+                <label for="password">Password</label>
+                <input placeholder="Enter Password" name="password" type="password">
 
-            <button type="submit">Sign Up</button>
-            
-        </div>
+                <label for="password">Confirm Password</label>
+                <input placeholder="Re-enter Password" name="" type="password">
+
+                <label for="security-ques">Security Question</label>
+                <select name="securityQues">
+                    <option value="Which city were you born in?">Which city were you born in?</option>
+                    <option value="What is your favourite food?">What is your favourite food?</option>
+                    <option value="What is the name of your first school?">What is the name of your first school?</option>
+                </select>
+
+                <label for="security-ans">Security Answer</label>
+                <input placeholder="Enter Security Answer" name="securityAns" type="text"><br>
+
+                <button type="submit">Sign Up</button>
+            </div>
+        </form>
+
+    </div>
     </div>
     <canvas id="canvas1"></canvas>
-    
+
     <script src="js/script.js" type="text/javascript"></script>
-    
+
 </body>
+
 </html>

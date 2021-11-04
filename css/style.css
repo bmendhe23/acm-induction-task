@@ -33,6 +33,10 @@ h1 {
     transform: translateY(55%);
 }
 
+form {
+    height: 100%;
+}
+
 #signup-container {
     font-size: larger;
     width: 50%;
@@ -40,7 +44,7 @@ h1 {
     text-align: center;
     display: flex;
     flex-direction: column;
-    transform: translateY(10%);
+    transform: translateY(7%);
 }
 
 #signup-container input {
