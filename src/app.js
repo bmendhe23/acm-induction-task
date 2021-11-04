@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const path = require("path");
 const app = express();
@@ -22,6 +23,8 @@ app.post("/signup", async (req, res) => {
             ...req.body
         })
 
+        const token = await registerUser.generateAuthToken();
+
         const registeredUser = await registerUser.save();
         res.status(201).send("User Registered");
 
@@ -39,9 +42,7 @@ app.post("/index", async (req, res) => {
         const userCheck = await User.findOne({email: email});
         const passCheck = await bcrypt.compare(password, userCheck.password);
 
-        console.log(userCheck.email);
-        console.log(userCheck.password);
-        console.log(passCheck);
+        const token = await userCheck.generateAuthToken();
         
         if(passCheck) {
             res.send("Correct Password");
