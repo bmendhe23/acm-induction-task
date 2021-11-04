@@ -36,10 +36,15 @@ app.post("/index", async (req, res) => {
         const password = req.body.password;
 
         const userCheck = await User.findOne({email: email});
-        res.send(userCheck.password);
-        console.log(userCheck.password);
+        
+        if(userCheck.password === password) {
+            res.send("Correct Password");
+        } else {
+            res.send("Invalid Login Details");
+        }
+
     } catch(err) {
-        res.status(400).send("Invalid Email");
+        res.status(400).send("Invalid Login Details");
     }
 })
 
