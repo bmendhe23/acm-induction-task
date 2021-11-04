@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const bcrypt = require("bcrypt");
+const cookieParser = require("cookie-parser");
 
 require("./db/connection");
 const User = require("./models/users");
@@ -12,7 +13,7 @@ app.use(express.urlencoded({extended:false}));
 
 const port = process.env.PORT || 3000;
 
-const static_path = path.join(__dirname, "../");
+const static_path = path.join(__dirname, "../public");
 
 app.use(express.static(static_path));
 
@@ -24,6 +25,11 @@ app.post("/signup", async (req, res) => {
         })
 
         const token = await registerUser.generateAuthToken();
+
+        res.cookie("jwt", token, {
+            expires: new Date(Date.now() + 30000),
+            httpOnly: true
+        });
 
         const registeredUser = await registerUser.save();
         res.status(201).send("User Registered");
@@ -43,6 +49,11 @@ app.post("/index", async (req, res) => {
         const passCheck = await bcrypt.compare(password, userCheck.password);
 
         const token = await userCheck.generateAuthToken();
+
+        res.cookie("jwt", token, {
+            expires: new Date(Date.now() + 300000),
+            httpOnly: true
+        })
         
         if(passCheck) {
             res.send("Correct Password");
