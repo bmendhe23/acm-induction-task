@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -29,6 +30,15 @@ const userSchema = new mongoose.Schema({
     }
 })
 
+//hashing is happening here before getting stored in the database
+userSchema.pre("save", async function(next) {
+    if(this.isModified("password")) {
+        this.password = await bcrypt.hash(this.password, 10);
+        next();
+    }
+})
+
 const User = new mongoose.model('User', userSchema);
 
 module.exports = User;
+

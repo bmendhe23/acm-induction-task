@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const app = express();
+const bcrypt = require("bcrypt");
 
 require("./db/connection");
 const User = require("./models/users");
@@ -36,8 +37,13 @@ app.post("/index", async (req, res) => {
         const password = req.body.password;
 
         const userCheck = await User.findOne({email: email});
+        const passCheck = await bcrypt.compare(password, userCheck.password);
+
+        console.log(userCheck.email);
+        console.log(userCheck.password);
+        console.log(passCheck);
         
-        if(userCheck.password === password) {
+        if(passCheck) {
             res.send("Correct Password");
         } else {
             res.send("Invalid Login Details");
