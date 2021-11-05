@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Particle JS Effect</title>
+    <title>User Registration</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -25,10 +25,13 @@
                 <input placeholder="Enter Name" name="name" type="text" required>
 
                 <label for="password">Password</label>
-                <input placeholder="Enter Password" name="password" type="password" required>
+                <input placeholder="Enter Password" id="pass" name="password" type="password" minlength="8" required>
 
                 <label for="cpassword">Confirm Password</label>
-                <input placeholder="Re-enter Password" name="" type="password" required>
+                <input placeholder="Re-enter Password" id="cpass" type="password" required>
+
+                
+                <p id="output-msg"></p>
 
                 <label for="security-ques">Security Question</label>
                 <select name="securityQues" required>
@@ -48,6 +51,7 @@
 
     <canvas id="canvas1"></canvas>
 
+    <script src="js/particle.js" type="text/javascript"></script>
     <script src="js/script.js" type="text/javascript"></script>
 
 </body>

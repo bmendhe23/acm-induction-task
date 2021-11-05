@@ -24,11 +24,17 @@ app.get("/index", function(req, res) {
     res.sendFile(index_path);
 })
 
+app.get("/signup", function(req, res) {
+    const signup_path = path.join(__dirname, "../public/signup.html");
+    res.sendFile(signup_path);
+})
+
 app.get("/user", authentication, function(req, res) {
     const user_path = path.join(__dirname, "../public/user.html");
     res.sendFile(user_path);
 })
 
+//logout
 app.get("/logout", authentication, function(req, res) {
     try {
 
