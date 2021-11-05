@@ -33,6 +33,16 @@ h1 {
     transform: translateY(55%);
 }
 
+#security-container {
+    font-size: larger;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(55%);
+}
+
 form {
     height: 100%;
 }
@@ -55,13 +65,33 @@ form {
     width: 50%;
 }
 
-label {
-    margin: 10px;
+#forgotpass-container {
+    font-size: larger;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(55%);
+}
+
+#resetPass-container {
+    font-size: larger;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(55%);
+}
+
+#forgotpass-container label {
+    margin: 10px auto;
 }
 
 input {
-    width: 40%;
-    margin: auto;
+    width: 50%;
+    margin: 10px auto;
     border-radius: 5px;
     padding: 5px;
     color: black;
@@ -80,8 +110,8 @@ button {
 }
 
 select {
-    width: 40%;
-    margin: auto;
+    width: 50%;
+    margin: 10px auto;
     padding: 5px;
     border-radius: 5px;
     color: black;
@@ -108,3 +138,112 @@ p a {
     height: 100%;
     background-color: #000222; 
 }
+
+@media only screen and (max-width: 508px) {
+
+    input {
+        width: 70%;
+    }
+    
+    button {
+        width: 35%;
+    }
+    select {
+        width: 70%;
+    }
+
+    #security-container {
+        transform: translateY(15%);
+    }
+
+    #security-container h1 {
+        font-size: larger;
+    }
+
+    #resetPass-container {
+        transform: translateY(15%);
+    }
+
+    
+  }
+
+  @media only screen and (max-width: 540px) {
+    #security-container {
+        transform: translateY(15%);
+    }
+
+    #resetPass-container {
+        transform: translateY(15%);
+    }
+
+    #resetPass-container button{
+        width: 60%;
+    }
+
+    #signup-container button{
+        width: 60%;
+    }
+    #signup-container input{
+        width: 70%;
+    }
+    #signup-container select{
+        width: 70%;
+    }
+  }
+
+  @media only screen and (max-width: 320px) {
+    input {
+        width: 90%;
+    }
+    
+    button {
+        width: 45%;
+    }
+
+    #signup-container {
+        font-size: x-small;
+    }
+
+  }
+
+  @media only screen and (max-width: 280px) {
+    h1 {
+        font-size: larger;
+    }
+
+    #login-container {
+        font-size: medium;
+    }
+
+    select {
+        width: 90%;
+    }
+
+    #resetPass-container button{
+        width: 70%;
+    }
+
+    #signup-container {
+        width: 90%;
+    }
+    
+  }
+
+  @media only screen and (max-width: 1024px) {
+    #login-container {
+        transform: translateY(30%);
+    }
+
+    #security-container {
+        transform: translateY(30%);
+    }
+
+    #resetPass-container {
+        transform: translateY(30%);
+    }
+
+    #signup-container {
+        font-size: x-small;
+    }
+
+  }

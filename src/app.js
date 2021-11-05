@@ -8,8 +8,10 @@ const cookieParser = require("cookie-parser");
 require("./db/connection");
 const authentication = require("./authentication");
 const User = require("./models/users");
+const { reset } = require('nodemon');
 
 let loggedUser;
+let forgotpassEmail;
 
 app.use(express.json());
 app.use(cookieParser());
@@ -47,6 +49,11 @@ app.get("/user", authentication, function(req, res) {
 
 app.get("/forgotpassword", function(req, res) {
     res.render("forgotpass");
+})
+
+app.get("/confirmSecurityQnA", function(req, res) {
+
+    res.render("confirmSecurityQnA");
 })
 
 //logout
@@ -122,15 +129,63 @@ app.post("/index", async (req, res) => {
     }
 })
 
+//forgot password logic
 app.post("/forgotpassword", async (req, res) => {
     try {
 
         const email = req.body.email;
 
         const userCheck = await User.findOne({email: email});
+        if(userCheck!==null) {
+            
+            forgotpassEmail = userCheck.email;
+            res.redirect("/confirmSecurityQnA");
+        } else {
+            res.render("forgotpass", { validationMsg: "So such email exists"});
+        }
 
     } catch(err) {
         res.status(400).send("No such Email exist");
+    }
+})
+
+//security answer check
+app.post("/confirmSecurityQnA", async (req, res) => {
+
+    try {   
+
+        const securityQ = req.body.securityQues;
+        const securityA = req.body.securityAns;
+
+        const checkEmail = await User.findOne({email: forgotpassEmail});
+
+        if(checkEmail===null) {
+            res.render("forgotpass");
+        } else if(checkEmail.securityQues === securityQ && checkEmail.securityAns === securityA) {
+            res.render("resetPassword");
+        } else {
+            res.render("confirmSecurityQnA", { validationMsg: "Security Verification Failed!" });
+        }
+
+    } catch(err) {
+        res.status(400).send(err);
+    }
+})
+
+app.post("/resetPassword", async (req, res) => {
+    try {
+
+        if(forgotpassEmail===null) {
+            res.render("index", { validationMsg: "You can only reset your password once!"});
+        } else {
+            const resetPass = await bcrypt.hash(req.body.password, 10);
+            const newPass = await User.updateOne({password: resetPass});
+            forgotpassEmail = null;
+            res.render("resetPassword", { confirmationMsg: "Password changed Successfully!"});
+        }
+        
+    } catch(err) {
+        res.status(400).send(err);
     }
 })
 

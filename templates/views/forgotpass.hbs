@@ -12,11 +12,12 @@
 <body>
     <div id="container">
         <form action="/forgotpassword" method="POST">
-            <div id="login-container">
+            <div id="forgotpass-container">
                 <h1>Forgot Password?</h1>
                 <label for="username">Enter you email</label>
-                <input placeholder="Enter Username/Email" name="email" type="text" required>
-                <button type="submit">Login</button>
+                <input placeholder="Enter your Email" name="email" type="email" required>
+                <p style="color: red;">{{ validationMsg }}</p>
+                <button type="submit">Check</button>
             </div> 
         </form> 
     </div> 
