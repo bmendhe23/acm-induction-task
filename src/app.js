@@ -102,7 +102,7 @@ app.post("/index", async (req, res) => {
         })
         
         if(passCheck) {
-            res.render("user");
+            res.render("user", { user: userCheck.name});
         } else {
             res.send("Invalid Login Details");
         }
