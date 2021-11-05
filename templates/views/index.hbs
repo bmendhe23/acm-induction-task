@@ -14,10 +14,11 @@
         <form action="/index" method="POST">
             <div id="login-container">
                 <h1>Login</h1>
-                <label for="username">Username/Email</label>
-                <input placeholder="Enter Username/Email" name="email" type="text" required>
+                <label for="username">Email</label>
+                <input placeholder="Enter your Email" name="email" type="email" required>
                 <label for="password">Password</label>
-                <input placeholder="Enter Password" name="password" type="password" required><br>
+                <input placeholder="Enter Password" name="password" type="password" required>
+                <p style="color: red;">{{ validationMsg }}</p>
                 <button type="submit">Login</button>
                 <p class="links"><a href="/signup">Don't have a Account? Sign Up!</a></p>
                 <p class="links"><a href="/forgotpassword">Forgot Password</a></p> 

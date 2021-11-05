@@ -9,6 +9,8 @@ require("./db/connection");
 const authentication = require("./authentication");
 const User = require("./models/users");
 
+let loggedUser;
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended:false}));
@@ -39,7 +41,7 @@ app.get("/user", authentication, function(req, res) {
     if(req.token == undefined) {
         res.render("index");
     } else {
-        res.render("user");
+        res.render("user", { user: loggedUser});
     }
 })
 
@@ -78,7 +80,7 @@ app.post("/signup", async (req, res) => {
         });
 
         const registeredUser = await registerUser.save();
-        res.status(201).render("index");
+        res.status(201).redirect("/index");
 
     } catch(err) {
         res.status(400).send(err);
@@ -92,19 +94,27 @@ app.post("/index", async (req, res) => {
         const password = req.body.password;
 
         const userCheck = await User.findOne({email: email});
-        const passCheck = await bcrypt.compare(password, userCheck.password);
-
-        const token = await userCheck.generateAuthToken();
-
-        res.cookie("jwt", token, {
-            expires: new Date(Date.now() + 300000),
-            httpOnly: true
-        })
         
-        if(passCheck) {
-            res.render("user", { user: userCheck.name});
+        if(userCheck !== null) {
+
+            const passCheck = await bcrypt.compare(password, userCheck.password);
+
+            if(passCheck) {
+                const token = await userCheck.generateAuthToken();
+
+                res.cookie("jwt", token, {
+                    expires: new Date(Date.now() + 300000),
+                    httpOnly: true
+                })
+
+                loggedUser = userCheck.name;
+                res.redirect("/user");
+            } else {
+                res.render("index", { validationMsg: "Invalid Login Credentials"});
+            }
+
         } else {
-            res.send("Invalid Login Details");
+            res.render("index", { validationMsg: "Invalid Login Credentials"});
         }
 
     } catch(err) {
