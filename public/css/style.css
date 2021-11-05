@@ -44,7 +44,7 @@ form {
     text-align: center;
     display: flex;
     flex-direction: column;
-    transform: translateY(4%);
+    transform: translateY(2%);
 }
 
 #signup-container input {

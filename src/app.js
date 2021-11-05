@@ -16,28 +16,35 @@ app.use(express.urlencoded({extended:false}));
 const port = process.env.PORT || 3000;
 
 const static_path = path.join(__dirname, "../public");
+const template_path = path.join(__dirname, "../templates/views");
 
 app.use(express.static(static_path));
+app.set("view engine", "hbs");
+app.set("views", template_path);
+
+app.get("/", (req, res) => {
+    res.render("index");
+})
 
 app.get("/index", function(req, res) {
-    const index_path = path.join(__dirname, "../public/index.html");
-    res.sendFile(index_path);
+    res.render("index");
 })
 
 app.get("/signup", function(req, res) {
-    const signup_path = path.join(__dirname, "../public/signup.html");
-    res.sendFile(signup_path);
+    res.render("signup");
 })
 
 app.get("/user", authentication, function(req, res) {
     
     if(req.token == undefined) {
-        const index_path = path.join(__dirname, "../public/index.html");
-        res.sendFile(index_path);
+        res.render("index");
     } else {
-        const user_path = path.join(__dirname, "../public/user.html");
-        res.sendFile(user_path);
+        res.render("user");
     }
+})
+
+app.get("/forgotpassword", function(req, res) {
+    res.render("forgotpass");
 })
 
 //logout
@@ -45,13 +52,11 @@ app.get("/logout", authentication, function(req, res) {
     try {
 
         if(req.token == undefined) {
-            const index_path = path.join(__dirname, "../public/index.html");
-            res.sendFile(index_path);
+            res.render("index");
         } else {
             res.clearCookie("jwt");
             
-            const index_path = path.join(__dirname, "../public/index.html");
-            res.sendFile(index_path);
+            res.render("index");
         }
     } catch(err) {
         res.status(500).send(err);
@@ -73,7 +78,7 @@ app.post("/signup", async (req, res) => {
         });
 
         const registeredUser = await registerUser.save();
-        res.status(201).redirect("/index");
+        res.status(201).render("index");
 
     } catch(err) {
         res.status(400).send(err);
@@ -97,13 +102,25 @@ app.post("/index", async (req, res) => {
         })
         
         if(passCheck) {
-            res.redirect("/user");
+            res.render("user");
         } else {
             res.send("Invalid Login Details");
         }
 
     } catch(err) {
         res.status(400).send(err);
+    }
+})
+
+app.post("/forgotpassword", async (req, res) => {
+    try {
+
+        const email = req.body.email;
+
+        const userCheck = await User.findOne({email: email});
+
+    } catch(err) {
+        res.status(400).send("No such Email exist");
     }
 })
 
