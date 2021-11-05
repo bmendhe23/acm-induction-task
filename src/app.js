@@ -30,18 +30,29 @@ app.get("/signup", function(req, res) {
 })
 
 app.get("/user", authentication, function(req, res) {
-    const user_path = path.join(__dirname, "../public/user.html");
-    res.sendFile(user_path);
+    
+    if(req.token == undefined) {
+        const index_path = path.join(__dirname, "../public/index.html");
+        res.sendFile(index_path);
+    } else {
+        const user_path = path.join(__dirname, "../public/user.html");
+        res.sendFile(user_path);
+    }
 })
 
 //logout
 app.get("/logout", authentication, function(req, res) {
     try {
 
-        res.clearCookie("jwt");
-        
-        const index_path = path.join(__dirname, "../public/index.html");
-        res.sendFile(index_path);
+        if(req.token == undefined) {
+            const index_path = path.join(__dirname, "../public/index.html");
+            res.sendFile(index_path);
+        } else {
+            res.clearCookie("jwt");
+            
+            const index_path = path.join(__dirname, "../public/index.html");
+            res.sendFile(index_path);
+        }
     } catch(err) {
         res.status(500).send(err);
     }
