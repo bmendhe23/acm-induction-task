@@ -32,10 +32,6 @@ app.get("/user", authentication, function(req, res) {
 app.get("/logout", authentication, function(req, res) {
     try {
 
-        req.user.tokens = req.user.tokens.filter((element) => {
-            return element.token !== req.token;
-        })
-
         res.clearCookie("jwt");
         
         const index_path = path.join(__dirname, "../public/index.html");
