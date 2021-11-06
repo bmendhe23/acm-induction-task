@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost/27017"+process.env.DB_NAME, { useNewUrlParser: true})
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true})
 .then( () => {
     console.log("Database Connection Established");
 })
