@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/"+process.env.DB_NAME, { useNewUrlParser: true})
+mongoose.connect("https://acm-ind-task.herokuapp.com/"+process.env.DB_NAME, { useNewUrlParser: true})
 .then( () => {
     console.log("Database Connection Established");
 })
