@@ -15,3 +15,4 @@ function validatePassword() {
 
 //confirm password validation
 cpass.addEventListener("input", validatePassword);
+pass.addEventListener("input", validatePassword);
