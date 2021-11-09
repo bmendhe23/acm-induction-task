@@ -141,7 +141,7 @@ app.post("/forgotpassword", async (req, res) => {
             forgotpassEmail = userCheck.email;
             res.redirect("/confirmSecurityQnA");
         } else {
-            res.render("forgotpass", { validationMsg: "So such email exists"});
+            res.render("forgotpass", { validationMsg: "No such email exists"});
         }
 
     } catch(err) {
