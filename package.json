@@ -21,7 +21,7 @@
   "homepage": "https://github.com/bmendhe23/acm-induction-task#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
-    "cookie-parser": "^1.4.5",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "hbs": "^4.1.2",
