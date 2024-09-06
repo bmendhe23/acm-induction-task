@@ -20,12 +20,12 @@
   },
   "homepage": "https://github.com/bmendhe23/acm-induction-task#readme",
   "dependencies": {
-    "bcrypt": "^5.0.1",
+    "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "hbs": "^4.1.2",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^6.0.12"
   },
   "devDependencies": {
